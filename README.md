@@ -35,7 +35,7 @@ $ ./run.py -i sysyruntimelibrary/performance_test/00_bitset1.sy
 
 ## 在 `armdev` 环境使用
 
-默认情况下, `armdev` 环境不包含 `git`, `gcc`, `cmake` 和 `python3`, 你需要自行安装. 然后在你喜欢的位置执行以下命令:
+默认情况下, `armdev` 环境不包含 `git`, `g++`, `cmake` 和 `python3`, 你需要自行安装. 然后在你喜欢的位置执行以下命令:
 
 ```
 $ git clone --depth 1 --single-branch --branch dev https://gitlab.eduxiji.net/csc2020-ustb-deadbeef/compiler.git
