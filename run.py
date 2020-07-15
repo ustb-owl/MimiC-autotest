@@ -37,7 +37,7 @@ def eprint(*args, **kwargs):
 # run single test case
 def run_case(sy_file, in_file, out_file):
   # compile to executable
-  pipe = subprocess.Popen((mmcc, sy_file), stdout=subprocess.PIPE)
+  pipe = subprocess.Popen((mmcc, sy_file, '-O2'), stdout=subprocess.PIPE)
   result = subprocess.run(cc.split(' '), stdin=pipe.stdout)
   pipe.wait()
   if result.returncode:
@@ -141,7 +141,7 @@ if __name__ == '__main__':
     sy_file = path.abspath(args.input)
     os.chdir(path.dirname(path.realpath(__file__)))
     # get test case
-    case = get_case(args.input)
+    case = get_case(sy_file)
     if not path.exists(case[2]):
       eprint(f'output file "{case[2]}" does not exist')
       exit(1)
