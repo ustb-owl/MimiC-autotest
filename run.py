@@ -17,12 +17,13 @@ dirs = [
 ]
 # path to MimiC compiler
 mmcc = '../../build/mmcc'
+cross_mmcc = '../../build/mmcc -S'
 # temporary generated executable
 exe = 'temp'
 # C compiler command line
 cc = f'clang -xc - sysy.c -O3 -Werror -o {exe}'
 # cross C compiler command line
-cross_cc = f'arm-linux-gnueabihf-gcc -xc - -O3 -Werror -o {exe}' + \
+cross_cc = f'arm-linux-gnueabihf-gcc -x assembler - -O3 -Werror -o {exe}' + \
            ' -static -Lsysyruntimelibrary -lsysy'
 
 # ===================== end =====================
@@ -37,7 +38,8 @@ def eprint(*args, **kwargs):
 # run single test case
 def run_case(sy_file, in_file, out_file):
   # compile to executable
-  pipe = subprocess.Popen((mmcc, sy_file, '-O2'), stdout=subprocess.PIPE)
+  mmcc_cmd = mmcc.split(' ') + ['-O2', sy_file]
+  pipe = subprocess.Popen(mmcc_cmd, stdout=subprocess.PIPE)
   result = subprocess.run(cc.split(' '), stdin=pipe.stdout)
   pipe.wait()
   if result.returncode:
@@ -128,6 +130,7 @@ if __name__ == '__main__':
   # check if is cross-compile mode
   if args.cross:
     cc = cross_cc
+    mmcc = cross_mmcc
   # start running
   if args.input:
     # check if input test cast is valid
