@@ -12,8 +12,8 @@ import sys
 
 # directories that storing test cases
 dirs = [
-    'sysyruntimelibrary/functional_test',
-    'sysyruntimelibrary/performance_test',
+    'sysyruntimelibrary/section1/functional_test',
+    'sysyruntimelibrary/section1/performance_test',
 ]
 # path to MimiC compiler
 mmcc = '../../build/mmcc'
