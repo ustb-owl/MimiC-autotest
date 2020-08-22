@@ -14,6 +14,7 @@ import sys
 dirs = [
     'sysyruntimelibrary/section1/functional_test',
     'sysyruntimelibrary/section1/performance_test',
+    'sysyruntimelibrary/section2/performance_test',
 ]
 # path to MimiC compiler
 mmcc = '../../build/mmcc'
