@@ -52,7 +52,8 @@ def run_case(sy_file, in_file, out_file):
   else:
     inputs = None
   result = subprocess.run(f'./{exe}', input=inputs, stdout=subprocess.PIPE)
-  out = f'{result.stdout.decode("utf-8").strip()}\n{result.returncode}'
+  trimed = result.stdout.decode('utf-8').strip('\n')
+  out = f'{trimed}\n{result.returncode}'
   out = out.strip()
   # compare to reference
   with open(out_file) as f:
